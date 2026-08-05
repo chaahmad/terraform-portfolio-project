@@ -10,7 +10,7 @@ A freelance designer has designed a website using Next.js and is looking for a s
 - Fast loading: the webpage must load quickly for all visitors globally
 
 ## Architecture
-![Architecture Diagram](images/diagram.jpg)
+![Architecture Diagram](image/diagram.jpg)
 
 ## Technologies and Tools Used
 
