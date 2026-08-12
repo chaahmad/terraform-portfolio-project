@@ -29,16 +29,10 @@ jobs:
             - name: Set up Terraform
               uses: hashicorp/setup-terraform@v4
             
-            - name: Initialize Terraform
-              run: terraform init
-
-            - name: Format Terraform code
-              run: terraform fmt -check
-
-            - name: Validate Terraform code
-              run: terraform validate
-
-            - name: Terraform Plan
-              run: terraform plan
-
+            - name: Initialize, Format, Validate, and Plan Terraform
+              run: |
+                terraform init
+                terraform fmt -check
+                terraform validate
+                terraform plan
 
