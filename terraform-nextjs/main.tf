@@ -84,7 +84,7 @@ resource "aws_cloudfront_distribution" "MyCloudFront" {
         viewer_protocol_policy = "https-only"
     }
 
-    restrictio {
+    restriction {
       geo_restriction {
         restriction_type = "none"
         locations = []

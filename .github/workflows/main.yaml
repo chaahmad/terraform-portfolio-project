@@ -1,0 +1,33 @@
+# Workflow for Terraform process for infrastrcture management
+
+name: Terraform Workflow #name of the workflow
+
+on: #Coding for PR events
+    pull_request:
+        branches:
+            - main
+        paths:
+            - 'terraform-nextjs/**'
+
+jobs:
+    terraform_init-to-terraform_plan:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+
+            - name: Set up Terraform
+              uses: hasicorp/setup-terraform@v4
+            
+            - name: Initialize Terraform
+              run: terraform init
+
+            - name: Format Terraform code
+              run: terraform fmt -check
+
+            - name: Validate Terraform code
+              run: terraform validate
+
+            - name: Terraform Plan
+              run: terraform plan
+
+
