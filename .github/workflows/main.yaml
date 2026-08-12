@@ -12,6 +12,10 @@ on: #Coding for PR events
 jobs:
     terraform_init-to-terraform_plan:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./terraform-nextjs
+                
         steps:
             - uses: actions/checkout@v7
 
