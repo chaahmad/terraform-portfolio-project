@@ -45,6 +45,7 @@ jobs:
     terraform_apply:
         runs-on: ubuntu-latest
         if: github.event.pull_request.merged == true
+        needs: terraform_init-to-terraform_plan
         defaults:
             run:
                 working-directory: ./terraform-nextjs
