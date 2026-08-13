@@ -68,3 +68,16 @@ jobs:
 
             - name: apply Terraform
               run: terraform apply -auto-approve
+
+            - name: Build Next.js static files
+              run: |
+                npm install
+                npm run build
+              working-directory: ./nextjs-blog
+
+            - name: Sync static files to S3 bucket
+              run: aws s3 sync out/ s3://static-website-portfolio-client
+              working-directory: ./nextjs-blog
+              
+            - name: Invalidate CloudFront cache
+              run: aws cloudfront create-invalidation --distribution-id E2C8AOOEF70Z92 --paths "/*"
