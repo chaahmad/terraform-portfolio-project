@@ -96,4 +96,4 @@ jobs:
               working-directory: ./nextjs-blog
               
             - name: Invalidate CloudFront cache
-              run: aws cloudfront create-invalidation --distribution-id E1W8882LFQYXB5 --paths "/*"
+              run: aws cloudfront create-invalidation --distribution-id E3S29IJG625ZRH --paths "/*"
