@@ -30,7 +30,7 @@ A freelance designer has designed a website using Next.js and is looking for a s
 - **Cost-effective:** the solution costs less than $1 USD for 20,000 visitors, assuming they are all first-time visitors with no cached content. With caching, the cost is even lower
 - **Scalable:** CloudFront automatically scales to handle traffic spikes without any manual intervention. Amazon S3 is also highly scalable with virtually unlimited capacity, requiring no manual intervention
 - **Highly available and fast loading:** CloudFront has over 400 edge locations worldwide, eliminating any single point of failure and making it highly available at all times. In addition, CloudFront's caching ability ensures content is served from the nearest edge location, making it very efficient for fast page loading
-- **Live Result:** [Website](https://d1dft33zm2x6vj.cloudfront.net/)
+- **Live Result:** [Website](https://d2s52x98ub4lb7.cloudfront.net/)
 
 ## Installation Instructions
 
