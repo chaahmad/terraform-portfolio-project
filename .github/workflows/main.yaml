@@ -16,6 +16,8 @@ jobs:
         defaults:
             run:
                 working-directory: ./terraform-nextjs
+        permissions:
+            pull-requests: write
 
         steps:
             - uses: actions/checkout@v7
@@ -27,8 +29,8 @@ jobs:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-            - name: Set up Terraform
-              uses: hashicorp/setup-terraform@v4
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@
             
             - name: Initialize Terraform
               run: terraform init
@@ -40,7 +42,21 @@ jobs:
               run: terraform validate
 
             - name: Terraform Plan
+              id: terraform_plan
               run: terraform plan
+
+            - name: Display Terraform Plan
+              uses: actions/github-script@v9
+              with:
+                github-token: ${{secrets.GITHUB_TOKEN}}
+                script: |
+                    github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: `Terraform Plan Result: ${{ steps.terraform_plan.outputs.stdout }}`
+                    })
+
 
     terraform_apply:
         runs-on: ubuntu-latest
