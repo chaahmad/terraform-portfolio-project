@@ -85,3 +85,6 @@ terraform output CloudFront_URL
 ### Full write-up
 For a detailed breakdown of the architecture, technical decisions, security implementation, and cost analysis, read the full blog post on Medium:
 [Blog](https://medium.com/@ahmadchaudhry.ac/from-business-requirements-to-aws-architecture-hosting-a-secure-static-website-for-less-than-cc0296137e64)
+
+For a detailed breakdown of the CI/CD pipeline implementation, read the full blog post on Medium:
+[CI/CD Blog](https://medium.com/@ahmadchaudhry.ac/how-i-automated-aws-infrastructure-deployments-using-terraform-and-github-actions-e920ac4dcabe)
