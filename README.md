@@ -24,6 +24,7 @@ A freelance designer has designed a website using Next.js and is looking for a s
     - S3 bucket is private to prevent users from bypassing CloudFront and accessing the bucket directly
     - Origin Access Control (OAC) authenticates requests from CloudFront to the S3 bucket on cache misses
 - **AI:** used to troubleshoot and optimize code, and to research and implement AWS best practices alongside AWS documentation
+- **GitHub Actions:** CI/CD pipeline automating infrastructure validation, plan review, and deployment through a pull request workflow
 
 ## Business Requirements Solved
 
@@ -31,6 +32,21 @@ A freelance designer has designed a website using Next.js and is looking for a s
 - **Scalable:** CloudFront automatically scales to handle traffic spikes without any manual intervention. Amazon S3 is also highly scalable with virtually unlimited capacity, requiring no manual intervention
 - **Highly available and fast loading:** CloudFront has over 400 edge locations worldwide, eliminating any single point of failure and making it highly available at all times. In addition, CloudFront's caching ability ensures content is served from the nearest edge location, making it very efficient for fast page loading
 - **Live Result:** [Website](https://d2s52x98ub4lb7.cloudfront.net/)
+
+## CI/CD Implementation
+
+- Any manual changes to AWS infrastructure, especially for growing businesses, can introduce several risks — including human error, no review process before changes go live, no audit trail of infrastructure changes, and inconsistent environments across deployments.
+
+- The solution is to implement a CI/CD pipeline using GitHub Actions that automates the infrastructure validation and deployment process through a pull request workflow. This ensures all changes are reviewed and tested before reaching production.
+
+- CI/CD pipeline: 
+    - The cloud engineer makes infrastructure changes using Terraform and pushes them to a development branch on GitHub
+    - The cloud engineer opens a pull request on GitHub, which automatically triggers the CI/CD workflow
+    - The workflow triggers the first job, which initializes, formats, and validates the Terraform code
+    - The first job will also create an execution plan and display it in a neat and readable format as a PR comment, making it easier for the approver/manager to review the changes
+    - The approver/manager reviews the changes and merges the pull request
+    - When the pull request is merged into the main branch, a second job is triggered automatically, deploying the updated Terraform infrastructure
+    - The second job will deploy the updated infrastructure and invalidate the CloudFront cache, ensuring any changes made to the website are reflected immediately — preventing potential revenue loss when new clients land on the newly updated site
 
 ## Installation Instructions
 
@@ -68,4 +84,4 @@ terraform output CloudFront_URL
 ```
 ### Full write-up
 For a detailed breakdown of the architecture, technical decisions, security implementation, and cost analysis, read the full blog post on Medium:
-[Blog](https://medium.com/@ahmadchaudhry.ac/from-business-requirements-to-aws-architecture-hosting-a-secure-static-website-for-less-than-cc0296137e64?postPublishedType=initial)
+[Blog](https://medium.com/@ahmadchaudhry.ac/from-business-requirements-to-aws-architecture-hosting-a-secure-static-website-for-less-than-cc0296137e64)
